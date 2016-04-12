@@ -12,14 +12,14 @@ func TestErrorRead(t *testing.T) {
 		"saltsaltsaltsaltsaltsaltsaltsalt",
 	}
 
-	result,error := storage.getString("pouet")
+	result, error := storage.getString("pouet")
 
 	if result != "" {
-		printErrorAndFail(t,"NO EXXISTING VALUE INSIDE STORAGE")
+		printErrorAndFail(t, "NO EXXISTING VALUE INSIDE STORAGE")
 	}
 
 	if error == nil {
-		printErrorAndFail(t,"AN ERROR SHOULD OCCURED WHEN A KEY DOES NOT EXIST")
+		printErrorAndFail(t, "AN ERROR SHOULD OCCURED WHEN A KEY DOES NOT EXIST")
 	}
 
 }
@@ -36,7 +36,7 @@ func TestWrite(t *testing.T) {
 	error := storage.storeString("pouetpouet", "camion")
 
 	if error != nil {
-		printErrorAndFail(t,"NO ERROR SHOULD OCCURED")
+		printErrorAndFail(t, "NO ERROR SHOULD OCCURED")
 	}
 }
 
@@ -50,22 +50,22 @@ func TestReadWrite(t *testing.T) {
 
 	storage.storeString("pouetpouet", "camion")
 
-	result,error  := storage.getString("pouetpouet")
+	result, error := storage.getString("pouetpouet")
 
 	if error != nil {
-		printErrorAndFail(t,"No Storage Error Should occured")
+		printErrorAndFail(t, "No Storage Error Should occured")
 	}
 
 	if result == "" {
-		printErrorAndFail(t,"could not even retrieve something form storage")
+		printErrorAndFail(t, "could not even retrieve something form storage")
 	}
 
 	if result != "camion" {
-		printErrorAndFail(t,"result from Storage different than expected")
+		printErrorAndFail(t, "result from Storage different than expected")
 	}
 }
 
-func printErrorAndFail(t *testing.T, strError string){
+func printErrorAndFail(t *testing.T, strError string) {
 	t.Error(strError)
 	t.FailNow()
 }

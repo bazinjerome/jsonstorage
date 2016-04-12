@@ -16,6 +16,34 @@ import (
 	"os"
 )
 
+func StoreValueForKey(filePath, password, salt, hmacSalt, key, value string) error {
+
+	storage := &JsonStorage{filePath,
+		password,
+		salt,
+		hmacSalt,
+	}
+
+	return storage.storeString("pouetpouet", "camion")
+}
+
+func GetValueForkey(filePath, password, salt, hmacSalt, key string) (string, error) {
+
+	storage := &JsonStorage{filePath,
+		password,
+		salt,
+		hmacSalt,
+	}
+
+	result, error := storage.getString("pouetpouet")
+
+	if error != nil {
+		return "",error
+	}
+
+	return result, error
+}
+
 type JsonStorage struct {
 	filePath,
 	password,
@@ -135,7 +163,7 @@ func unboxStorage(cipherText []byte, password, salt, hmacSalt string) ([]byte, e
 		return decrypted, nil
 	}
 
-	return nil,nil
+	return nil, nil
 }
 
 func hmacBytes(input []byte, salt string) []byte {
