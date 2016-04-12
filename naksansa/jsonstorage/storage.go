@@ -24,7 +24,7 @@ func StoreValueForKey(filePath, password, salt, hmacSalt, key, value string) err
 		hmacSalt,
 	}
 
-	return storage.storeString("pouetpouet", "camion")
+	return storage.storeString(key, value)
 }
 
 func GetValueForkey(filePath, password, salt, hmacSalt, key string) (string, error) {
@@ -35,7 +35,7 @@ func GetValueForkey(filePath, password, salt, hmacSalt, key string) (string, err
 		hmacSalt,
 	}
 
-	result, error := storage.getString("pouetpouet")
+	result, error := storage.getString(key)
 
 	if error != nil {
 		return "",error
